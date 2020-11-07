@@ -21,10 +21,10 @@ ToolTip, leaves, 0, 0, 1
 ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\leaves.bmp
 If ErrorLevel = 0 
 {
-	ToolTip , leaves, X, Y, 17
-	MouseMove X,Y+200
+	MouseMove X,Y+265
 	Click down
-	Sleep 3200
+	MouseMove X,Y+565
+	Sleep 3000
 	Click up
 	Send {ESC}
 }
@@ -59,9 +59,9 @@ If(ErrorLevel < 1)
 {
 	MsgBox
 	ToolTip, lab, X, Y, 17
-	;Click, X+20,Y+20
-	;Sleep 20
-	;Send {Esc}
+	MouseClick,, X+20,Y+20
+	Sleep 20
+	Send {Esc}
 }
 
 ;switch
@@ -93,15 +93,51 @@ If(ErrorLevel < 1)
 	;; move the mouse
 	Loop, 4
 	{
-		MouseMove 600, 80+A_Index*189, 2
+		MouseMove 600, 80+A_Index*189, 1
 		Sleep 10
 		Click down
-		Sleep 20
-		MouseMove 1280, rY[A_Index], 2
+		Sleep 10
+		MouseMove 1280, rY[A_Index], 1
 		Sleep 10
 		Click up
 		Sleep 10
 	}
+}
+
+;wallet
+ToolTip, wallet, 0, 0, 1
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\Wallet.bmp
+If(ErrorLevel < 1) 
+{
+	Click 750, 810
+	Sleep 800
+	MouseMove 520, 430
+	Sleep 10
+	Click down
+	MouseMove 1400, 430, 7
+	Click up
+}
+
+;Download/Upload
+ToolTip, download, 0, 0, 1
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\download_btn.bmp
+If(ErrorLevel < 1) 
+{
+	MouseClick,, X+10,Y+10
+}
+ToolTip, upload, 0, 0, 1
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\upload_btn.bmp
+If(ErrorLevel < 1) 
+{
+	MouseClick,, X+10,Y+10
+}
+
+;reactor
+ToolTip, reactor, 0, 0, 1
+ImageSearch, X, Y, 560, 370, 1360, 710, %A_ScriptDir%\img\num\1.bmp
+If(ErrorLevel < 1) 
+{
+	ToolTip, Andy, X,Y, 1
 }
 
 ;reporting

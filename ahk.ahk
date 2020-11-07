@@ -1,3 +1,6 @@
+#SingleInstance, force
+CoordMode, Mouse, Screen
+
 ^D::
 ToolTip , Searching, 0, 0, 17
 Loop
@@ -7,7 +10,7 @@ if WinActive("Among Us")
 
 ;TEMP
 ToolTip, Temperature, 0, 0, 1
-ImageSearch, X, Y, 0, 0, 19020, 1080, %A_ScriptDir%\img\Temp.bmp
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\Temp.bmp
 If ErrorLevel = 0 
 {
 	ToolTip , Temperature, X, Y, 17
@@ -15,7 +18,7 @@ If ErrorLevel = 0
 
 ;leaves
 ToolTip, leaves, 0, 0, 1
-ImageSearch, X, Y, 0, 0, 19020, 1080, %A_ScriptDir%\img\leaves.bmp
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\leaves.bmp
 If ErrorLevel = 0 
 {
 	ToolTip , leaves, X, Y, 17
@@ -27,7 +30,7 @@ If ErrorLevel = 0
 }
 ;button
 ToolTip, button1, 0, 0, 1
-ImageSearch, X, Y, 0, 0, 19020, 1080, %A_ScriptDir%\img\button.bmp
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\button.bmp
 If(ErrorLevel < 1) 
 {
 	MouseMove X+50,Y+50
@@ -39,7 +42,7 @@ If(ErrorLevel < 1)
 
 ;button2
 ToolTip, button2, 0, 0, 1
-ImageSearch, X, Y, 0, 0, 19020, 1080, %A_ScriptDir%\img\button2.bmp
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\button2.bmp
 If(ErrorLevel < 1) 
 {
 	MouseMove X+50,Y+50
@@ -51,7 +54,7 @@ If(ErrorLevel < 1)
 
 ;lab Btn
 ToolTip, lab, 0, 0, 1
-ImageSearch, X, Y, 0, 0, 19020, 1080, %A_ScriptDir%\img\labBtn.bmp
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\labBtn.bmp
 If(ErrorLevel < 1) 
 {
 	MsgBox
@@ -63,7 +66,7 @@ If(ErrorLevel < 1)
 
 ;switch
 ToolTip, switch, 0, 0, 1
-ImageSearch, X, Y, 0, 0, 19020, 1080, %A_ScriptDir%\img\Switch.bmp
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\Switch.bmp
 If(ErrorLevel < 1) 
 {
 	Click, X+10,Y+10
@@ -71,38 +74,33 @@ If(ErrorLevel < 1)
 
 ;wires
 ToolTip, wires, 0, 0, 1
-ImageSearch, X, Y, 0, 0, 19020, 1080, %A_ScriptDir%\img\Wires.bmp
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\Wires.bmp
 If(ErrorLevel < 1) 
 {
-	ToolTip ,Wires, X, Y, 17
-	; look for the wires on the left
-	lX := []
-	lY := []
-	Loop, 4
-	{
-		ImageSearch, X, Y, 0, 0, 19020, 1080, %A_ScriptDir%\img\wires\%A_Index%.bmp
-		lX[A_Index]:=X+75
-		lY[A_Index]:=Y
+	ColorMap:={}
+	rY:=[]
+	Loop, 4{
+		PixelGetColor, lColor, 560, 80+A_Index*189
+		ColorMap[lColor]:=A_Index
+		
 	}
-	
-	rX := []
-	rY := []
-	; look for the wires on the right
-	Loop, 4
-	{
-		ImageSearch, X, Y, 0, 0, 19020, 1080, %A_ScriptDir%\img\wires\%A_Index%R.bmp
-		rX[A_Index]:=X-80
-		rY[A_Index]:=Y
+	Loop, 4{
+		PixelGetColor, rColor, 1350, 80+A_Index*189
+		
+		rY[ColorMap[rColor]]:=80+A_Index*189
 	}
-	; move the mouse
+
+	;; move the mouse
 	Loop, 4
 	{
-		MouseMove lX[A_Index], lY[A_Index]
+		MouseMove 600, 80+A_Index*189, 2
+		Sleep 10
 		Click down
-		Sleep 100
-		MouseMove rX[A_Index], rY[A_Index]
-		Click up
 		Sleep 20
+		MouseMove 1280, rY[A_Index], 2
+		Sleep 10
+		Click up
+		Sleep 10
 	}
 }
 

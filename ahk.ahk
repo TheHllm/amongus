@@ -22,7 +22,7 @@ ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\leaves.bmp
 If ErrorLevel = 0 
 {
 	ToolTip , leaves, X, Y, 17
-	MouseMove X,Y+200
+	MouseMove X,Y+265
 	Click down
 	Sleep 3200
 	Click up
@@ -72,6 +72,52 @@ If(ErrorLevel < 1)
 	Click, X+10,Y+10
 }
 
+;divert
+ToolTip, divert, 0, 0, 1
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\divert.bmp
+If(ErrorLevel < 1) 
+{
+	ToolTip, divert, X, Y, 17
+	ImageSearch, X2, Y2, 0, 0, 1920, 1080, %A_ScriptDir%\img\divertSlider.bmp
+	
+	MouseMove X2+45,Y2+35
+	Click down
+	MouseMove, X2+45, Y + 100, 10
+	Click up
+}
+
+;weapons
+ToolTip, weapons, 0, 0, 1
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\divert.bmp
+If(ErrorLevel < 1) 
+{
+	ToolTip, divert, X, Y, 17
+	ImageSearch, X2, Y2, 0, 0, 1920, 1080, %A_ScriptDir%\img\divertSlider.bmp
+	
+	MouseMove X2+45,Y2+35
+	Click down
+	MouseMove, X2+45, Y + 100, 10
+	Click up
+}
+
+;divertAccept
+ToolTip, divertAccept, 0, 0, 1
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\divertAccept.bmp
+If(ErrorLevel < 1) 
+{
+	MouseClick,, X+25,Y+80
+}
+
+
+;weapons
+ToolTip, weapons, 0, 0, 1
+ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\weapons.bmp
+If(ErrorLevel < 1) 
+{
+	MouseClick,, X+25,Y+80
+}
+
+
 ;wires
 ToolTip, wires, 0, 0, 1
 ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\Wires.bmp
@@ -109,7 +155,6 @@ If(ErrorLevel < 1)
 if WinActive("Among Us")
 {
 	Send R
-	Sleep 250
 }
 
 

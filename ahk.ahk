@@ -25,7 +25,6 @@ ToolTip, leaves, 0, 0, 1
 ImageSearch, X, Y, 0, 0, 1920, 1080, %A_ScriptDir%\img\leaves.bmp
 If ErrorLevel = 0 
 {
-	ToolTip , leaves, X, Y, 17
 	MouseMove X,Y+265
 	Click down
 	MouseMove X,Y+565
@@ -210,18 +209,10 @@ shieldsX := [1410,1360,1350]
 shieldsY := [654,600,615]
 shieldsColor := [0x3A1C09,0x91491E,0xFFFFFF]
 
-ClickShield(x,y){
-
-	PixelGetColor fcolor, x,y
-	Sleep 400
-
-	Red:="0x" SubStr(fcolor,7,2)
-	Red:=Red+0
-	if Red < 240
-	{
-		MouseClick,, x+20,y
-		
-	}
+ClickShield(x,y)
+{
+	Sleep 10
+	MouseClick,, x+20,y
 }
 
 if(CheckPoints(shieldsX, shieldsY, shieldsColor)){
@@ -249,13 +240,6 @@ if WinActive("Among Us")
 Return
 
 
-^I::
-ToolTip , Reporting, 0, 0, 1
-Loop
-{
-Send R
-Sleep 500
-}
 
 ^T::Exitapp
 ^R::Reload
